@@ -4,6 +4,7 @@ namespace AdrianMejias\ZipBomb\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use AdrianMejias\ZipBomb\ZipBomb as ZipBombContract;
 
 class ZipBomb
 {
@@ -13,13 +14,6 @@ class ZipBomb
      * @var \AdrianMejias\ZipBomb\ZipBomb
      */
     protected $zipbomb;
-
-    /**
-     * A simple request.
-     *
-     * @var Request
-     */
-    protected $request;
 
     /**
      * A simple application.
@@ -42,12 +36,9 @@ class ZipBomb
      *
      * @return void
      */
-    public function __construct(ZipBomb $zipbomb)
+    public function __construct(ZipBombContract $zipbomb)
     {
         $this->zipbomb = $zipbomb;
-
-      // get user-agent
-      $this->agent = strtolower($this->request->header('User-Agent'));
     }
 
     /**
@@ -58,7 +49,7 @@ class ZipBomb
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($this->shouldBomb()) {
+        if ($this->shouldBomb($request)) {
             $contents = $this->zipbomb->getZipBombFileContent();
 
             // turn off output buffering
@@ -73,7 +64,7 @@ class ZipBomb
             ]);
         }
 
-        return $next($response);
+        return $next($request);
     }
 
     /**
@@ -81,6 +72,9 @@ class ZipBomb
      */
     protected function shouldBomb(Request $request)
     {
+        // get user-agent
+        $this->agent = strtolower($request->header('User-Agent'));
+
         // check user-agents
         foreach ($this->zipbomb->getAgents() as $agent) {
             if (! empty($this->agent) && strpos($this->agent, $agent) !== false) {
@@ -90,7 +84,7 @@ class ZipBomb
 
         // check paths
         foreach ($this->zipbomb->getPaths() as $path) {
-            if ($this->request->is($path)) {
+            if ($request->is($path)) {
                 return true;
             }
         }
