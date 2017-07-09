@@ -4,6 +4,7 @@ namespace AdrianMejias\ZipBomb;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use AdrianMejias\ZipBomb\ZipBomb as ZipBombContract;
 use AdrianMejias\ZipBomb\Exceptions\InvalidConfiguration;
@@ -36,15 +37,18 @@ class ZipBombServiceProvider extends ServiceProvider
 
         $config = config('zipbomb');
 
-        $this->app->singleton(ZipBombContract::class, function () use ($config) {
+        $this->app->singleton(ZipBombContract::class, function ($app) use ($config) {
             $this->guardAgainstInvalidConfiguration($config);
 
             return new ZipBomb($config);
         });
 
-        $this->app->alias(ZipBombContract::class, 'zipbomb');
-
-        $this->app[Router::class]->aliasMiddleware('zipbomb', ZipBombMiddleware::class);
+        $this->app->bind('zipbomb', function ($app) {
+            /** @var \Illuminate\Config\Repository $config */
+            $config = $app['config'];
+            
+            return new ZipBomb($config);
+        });
     }
 
     /**
