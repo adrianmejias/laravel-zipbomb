@@ -1,4 +1,7 @@
-# laravel-zipbomb
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/adrianmejias/laravel-zipbomb.svg?style=flat-square)](https://packagist.org/packages/adrianmejias/laravel-zipbomb)
+[![Build Status](https://img.shields.io/travis/adrianmejias/laravel-zipbomb/master.svg?style=flat-square)](https://travis-ci.org/adrianmejias/laravel-zipbomb)
+[![StyleCI](https://styleci.io/repos/96650858/shield)](https://styleci.io/repos/96650858)
+[![Total Downloads](https://img.shields.io/packagist/dt/adrianmejias/laravel-zipbomb.svg?style=flat-square)](https://packagist.org/packages/adrianmejias/laravel-zipbomb)
 
 Enable zip bomb defense of your app
 
