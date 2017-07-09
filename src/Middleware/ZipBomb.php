@@ -1,11 +1,11 @@
 <?php
 
-namespace AdrianMejias\ZipBomb;
+namespace AdrianMejias\ZipBomb\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
 
-class ZipBombMiddleware
+class ZipBomb
 {
     /**
      * The zipbomb instance.

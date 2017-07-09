@@ -37,7 +37,7 @@ Finally, register the middleware:
 
 protected $middleware = [
     // ...
-    \AdrianMejias\ZipBomb\ZipBombMiddleware::class,
+    \AdrianMejias\ZipBomb\Middleware\ZipBomb::class,
 ];
 ```
 
