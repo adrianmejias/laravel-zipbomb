@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\Referer;
+namespace AdrianMejias\ZipBomb;
 
 use Illuminate\Support\Facades\File;
 
