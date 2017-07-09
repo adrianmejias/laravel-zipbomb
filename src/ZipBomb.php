@@ -42,7 +42,7 @@ class ZipBomb
         return File::get($this->zip_bomb_file);
     }
 
-    public function getZipBombFileSize(): integer
+    public function getZipBombFileSize(): int
     {
         return File::size($this->zip_bomb_file);
     }
