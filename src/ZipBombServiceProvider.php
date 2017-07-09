@@ -11,9 +11,6 @@ use AdrianMejias\ZipBomb\Middleware\ZipBomb as ZipBombMiddleware;
 
 class ZipBombServiceProvider extends ServiceProvider
 {
-    /** @var string */
-    private $source;
-
     /**
      * Bootstrap the application events.
      */
@@ -23,7 +20,7 @@ class ZipBombServiceProvider extends ServiceProvider
 
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([
-                $this->source => config_path('zipbomb.php'),
+                __DIR__.'/../config/zipbomb.php' => config_path('zipbomb.php'),
             ], 'config');
         } elseif ($this->app instanceof LumenApplication) {
             $this->app->configure('zipbomb');
@@ -35,7 +32,7 @@ class ZipBombServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom($this->source, 'zipbomb');
+        $this->mergeConfigFrom(__DIR__.'/../config/zipbomb.php', 'zipbomb');
 
         $config = config('zipbomb');
 
