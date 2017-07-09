@@ -37,16 +37,9 @@ class ZipBombServiceProvider extends ServiceProvider
 
         $config = config('zipbomb');
 
-        $this->app->singleton(ZipBombContract::class, function ($app) use ($config) {
+        $this->app->bind('zipbomb', function ($app) use ($config) {
             $this->guardAgainstInvalidConfiguration($config);
 
-            return new ZipBomb($config);
-        });
-
-        $this->app->bind('zipbomb', function ($app) {
-            /** @var \Illuminate\Config\Repository $config */
-            $config = $app['config'];
-            
             return new ZipBomb($config);
         });
     }
