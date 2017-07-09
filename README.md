@@ -32,9 +32,15 @@ Next, publish the config file.
 $ php artisan vendor:publish --provider="AdrianMejias\ZipBomb\ZipBombServiceProvider"
 ```
 
+A file named `10G.gzip` should be generated in the `storage/app/zipbomb` folder. If this file does not exist after installation. Use the following command at `storage/app/zipbomb`
+
+``` bash
+$ dd if=/dev/zero bs=1M count=10240 | gzip > 10G.gzip
+```
+
 The following config file will be published in `config/zipbomb.php`
 
-```php
+``` php
 /**
  * Laravel Zip Bomb Configuration.
  *
