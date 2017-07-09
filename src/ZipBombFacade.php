@@ -4,10 +4,13 @@ namespace AdrianMejias\ZipBomb;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+* @see \AdrianMejias\ZipBomb\ZipBomb
+ */
 class ZipBombFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'zipbomb';
+        return 'laravel-zipbomb';
     }
 }

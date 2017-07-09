@@ -15,11 +15,11 @@ class ZipBomb
     /** @var string */
     protected $zip_bomb_file;
 
-    public function __construct($config)
+    public function __construct(array $config)
     {
-        $this->agents = $config->get('agents');
-        $this->paths = $config->get('paths');
-        $this->zip_bomb_file = $config->get('zip_bomb_file');
+        $this->agents = $config['agents'];
+        $this->paths = $config['paths'];
+        $this->zip_bomb_file = $config['zip_bomb_file'];
     }
 
     public function getAgents(): array

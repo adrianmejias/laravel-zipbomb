@@ -11,34 +11,38 @@ class ZipBombServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.
+     *
+     * @return void
      */
     public function boot()
     {
-        $this->source = __DIR__.'/../config/zipbomb.php';
-
-        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
+        // if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/zipbomb.php' => config_path('zipbomb.php'),
+                __DIR__.'/config/zipbomb.php' => config_path('zipbomb.php'),
             ], 'config');
-        } elseif ($this->app instanceof LumenApplication) {
-            $this->app->configure('zipbomb');
-        }
+        // } elseif ($this->app instanceof LumenApplication) {
+        //     $this->app->configure('zipbomb');
+        // }
     }
 
     /**
      * Register the service provider.
+     *
+     * @return void
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/zipbomb.php', 'zipbomb');
+        $this->mergeConfigFrom(__DIR__.'/config/zipbomb.php', 'zipbomb');
 
         $config = config('zipbomb');
 
-        $this->app->bind('zipbomb', function ($app) use ($config) {
+        $this->app->bind(ZipBomb::class, function ($app) use ($config) {
             $this->guardAgainstInvalidConfiguration($config);
 
             return new ZipBomb($config);
         });
+
+        $this->app->alias(ZipBomb::class, 'laravel-zipbomb');
     }
 
     /**
@@ -49,12 +53,16 @@ class ZipBombServiceProvider extends ServiceProvider
     public function provides(): array
     {
         return [
-            'zipbomb',
+            'laravel-zipbomb',
         ];
     }
 
     /**
      * Check for invalid configuration.
+     *
+     * @param string[]|null
+     *
+     * @throws \AdrianMejias\ZipBomb\Exceptions\InvalidConfiguration
      */
     protected function guardAgainstInvalidConfiguration(array $config = null)
     {
@@ -77,6 +85,10 @@ class ZipBombServiceProvider extends ServiceProvider
 
     /**
      * Check for zip bomb file.
+     * 
+     * @param string
+     * 
+     * @return boolean
      */
     private function createOrFail($zip_bomb_file)
     {

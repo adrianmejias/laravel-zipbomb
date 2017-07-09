@@ -27,7 +27,44 @@ Start by registering the package's the service provider:
 Next, publish the config file.
 
 ``` bash
-$ php artisan vendor:publish --provider="AdrianMejias\ZipBomb\ZipBombServiceProvider" --tag="config"
+$ php artisan vendor:publish --provider="AdrianMejias\ZipBomb\ZipBombServiceProvider"
+```
+
+The following config file will be published in `config/zipbomb.php`
+
+```php
+/**
+ * Laravel Zip Bomb Configuration.
+ *
+ * Check for nikto, sql map or "bad" subfolders which only exist on
+ * WordPress.
+ */
+
+return [
+
+    /*
+     * User-Agents to check against.
+     */
+    'agents' => [
+        'nikto',
+        'sqlmap',
+    ],
+
+    /*
+     * Paths to check against.
+     */
+    'paths' => [
+        'wp-',
+        'wordpress',
+        'wp/*',
+    ],
+
+    /*
+     * Path to the zip bomb file.
+     */
+    'zip_bomb_file' => storage_path('app/zipbomb/10G.gzip'),
+
+];
 ```
 
 Finally, register the middleware:
@@ -38,6 +75,17 @@ Finally, register the middleware:
 protected $middleware = [
     // ...
     \AdrianMejias\ZipBomb\Middleware\ZipBomb::class,
+];
+```
+
+This package also comes with a facade, which provides an easy way to call the the class for whatever reason.
+
+``` php
+// config/app.php
+
+'aliases' => [
+    // ...
+    'Analytics' => AdrianMejias\ZipBomb\ZipBombFacade::class,
 ];
 ```
 
