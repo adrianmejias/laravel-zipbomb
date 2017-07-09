@@ -2,8 +2,8 @@
 
 namespace AdrianMejias\ZipBomb;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\ServiceProvider;
 use AdrianMejias\ZipBomb\Exceptions\InvalidConfiguration;
 
 class ZipBombServiceProvider extends ServiceProvider
@@ -14,7 +14,7 @@ class ZipBombServiceProvider extends ServiceProvider
     public function boot()
     {
         $source = realpath(__DIR__.'/../config/zipbomb.php');
-        
+
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([$source => config_path('zipbomb.php')]);
         } elseif ($this->app instanceof LumenApplication) {
@@ -31,7 +31,7 @@ class ZipBombServiceProvider extends ServiceProvider
     {
         $this->app->singleton('zipbomb', function (Container $app) {
             $config = $app['config']['zipbomb'];
-            
+
             $this->guardAgainstInvalidConfiguration($config);
 
             return new ZipBomb($config);
@@ -45,7 +45,7 @@ class ZipBombServiceProvider extends ServiceProvider
      *
      * @return string[]
      */
-    public function provides(): Array
+    public function provides(): array
     {
         return [
             'zipbomb',
@@ -55,7 +55,7 @@ class ZipBombServiceProvider extends ServiceProvider
     /**
      * Check for invalid configuration.
      */
-    protected function guardAgainstInvalidConfiguration(Array $config = null)
+    protected function guardAgainstInvalidConfiguration(array $config = null)
     {
         if (empty($config['agents'])) {
             throw InvalidConfiguration::agentsNotSpecified();
@@ -92,5 +92,4 @@ class ZipBombServiceProvider extends ServiceProvider
 
         return true;
     }
-
 }

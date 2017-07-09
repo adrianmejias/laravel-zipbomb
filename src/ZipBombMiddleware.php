@@ -30,8 +30,8 @@ class ZipBombMiddleware
 
     /**
      * A simple agent.
-     * 
-     * @var String
+     *
+     * @var string
      */
     protected $agent;
 
@@ -44,7 +44,7 @@ class ZipBombMiddleware
      */
     public function __construct(ZipBomb $zipbomb)
     {
-      $this->zipbomb = $zipbomb;
+        $this->zipbomb = $zipbomb;
 
       // get user-agent
       $this->agent = strtolower($this->request->header('User-Agent'));
@@ -83,7 +83,7 @@ class ZipBombMiddleware
     {
         // check user-agents
         foreach ($this->zipbomb->getAgents() as $agent) {
-            if (!empty($this->agent) && strpos($this->agent, $agent) !== false) {
+            if (! empty($this->agent) && strpos($this->agent, $agent) !== false) {
                 return true;
             }
         }
