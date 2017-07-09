@@ -19,7 +19,9 @@ class ZipBombServiceProvider extends ServiceProvider
         $source = realpath(__DIR__.'/../config/zipbomb.php');
 
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
-            $this->publishes([$source => config_path('zipbomb.php')]);
+            $this->publishes([
+                $source => config_path('zipbomb.php'),
+            ]);
         } elseif ($this->app instanceof LumenApplication) {
             $this->app->configure('zipbomb');
         }
@@ -71,7 +73,7 @@ class ZipBombServiceProvider extends ServiceProvider
         }
 
         if (! $this->createOrFail($config['zip_bomb_file'])) {
-            throw InvalidConfiguration::zipDoesNotWriteable($config['zip_bomb_file']);
+            throw InvalidConfiguration::zipBombFileNotWriteable($config['zip_bomb_file']);
         }
 
         if (! file_exists($config['zip_bomb_file'])) {
