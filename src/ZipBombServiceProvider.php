@@ -85,10 +85,10 @@ class ZipBombServiceProvider extends ServiceProvider
 
     /**
      * Check for zip bomb file.
-     * 
+     *
      * @param string
-     * 
-     * @return boolean
+     *
+     * @return bool
      */
     private function createOrFail($zip_bomb_file)
     {

@@ -5,7 +5,7 @@ namespace AdrianMejias\ZipBomb;
 use Illuminate\Support\Facades\Facade;
 
 /**
-* @see \AdrianMejias\ZipBomb\ZipBomb
+ * @see \AdrianMejias\ZipBomb\ZipBomb
  */
 class ZipBombFacade extends Facade
 {
