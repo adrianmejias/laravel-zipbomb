@@ -1,0 +1,44 @@
+{
+    "name": "adrianmejias/laravel-zipbomb",
+    "description": "Enable zip bomb defense of your app",
+    "keywords": [
+        "zipbomb",
+        "defense",
+        "adrianmejias",
+        "laravel",
+        "zip",
+        "bomb",
+        "defend"
+    ],
+    "homepage": "https://github.com/adrianmejias/laravel-zipbomb",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adrian Mejias",
+            "email": "adrianmejias@gmail.com",
+            "homepage": "https://adrianmejias.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : "^7.0",
+        "illuminate/http": "^5.1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^3.2",
+        "phpunit/phpunit" : "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "AdrianMejias\\ZipBomb\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AdrianMejias\\ZipBomb\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}
