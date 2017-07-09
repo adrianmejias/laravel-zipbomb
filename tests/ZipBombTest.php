@@ -7,8 +7,6 @@ class ZipBombTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-
-        $this->setUpDummyRoutes();
     }
 
     /** @test */
