@@ -6,8 +6,8 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use AdrianMejias\ZipBomb\ZipBomb as ZipBombContract;
-use AdrianMejias\ZipBomb\Middleware\ZipBomb as ZipBombMiddleware;
 use AdrianMejias\ZipBomb\Exceptions\InvalidConfiguration;
+use AdrianMejias\ZipBomb\Middleware\ZipBomb as ZipBombMiddleware;
 
 class ZipBombServiceProvider extends ServiceProvider
 {
@@ -41,7 +41,7 @@ class ZipBombServiceProvider extends ServiceProvider
         });
 
         $this->app->alias(ZipBombContract::class, 'zipbomb');
-        
+
         $this->app[Router::class]->aliasMiddleware('zipbomb', ZipBombMiddleware::class);
     }
 
