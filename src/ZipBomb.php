@@ -20,7 +20,7 @@ class ZipBomb
     {
         $this->agents        = $config['agents'];
         $this->paths         = $config['paths'];
-        $this->zip_bomb_file = $config'zip_bomb_file'];
+        $this->zip_bomb_file = $config['zip_bomb_file'];
     }
 
     public function getAgents(): Array
