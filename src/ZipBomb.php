@@ -2,33 +2,32 @@
 
 namespace Spatie\Referer;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class ZipBomb
 {
-    /** @var Array */
+    /** @var array */
     protected $agents;
 
-    /** @var Array */
+    /** @var array */
     protected $paths;
 
-    /** @var String */
+    /** @var string */
     protected $zip_bomb_file;
 
-    public function __construct(Array $config)
+    public function __construct(array $config)
     {
-        $this->agents        = $config['agents'];
-        $this->paths         = $config['paths'];
+        $this->agents = $config['agents'];
+        $this->paths = $config['paths'];
         $this->zip_bomb_file = $config['zip_bomb_file'];
     }
 
-    public function getAgents(): Array
+    public function getAgents(): array
     {
         return $this->agents;
     }
 
-    public function getPaths(): Array
+    public function getPaths(): array
     {
         return $this->paths;
     }
@@ -47,5 +46,4 @@ class ZipBomb
     {
         return File::size($this->zip_bomb_file);
     }
-
 }
