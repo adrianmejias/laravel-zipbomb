@@ -2,13 +2,11 @@
 
 namespace AdrianMejias\ZipBomb;
 
-use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Foundation\Application;
 use AdrianMejias\ZipBomb\ZipBomb as ZipBombContract;
 use AdrianMejias\ZipBomb\Exceptions\InvalidConfiguration;
-use AdrianMejias\ZipBomb\Middleware\ZipBomb as ZipBombMiddleware;
 
 class ZipBombServiceProvider extends ServiceProvider
 {
