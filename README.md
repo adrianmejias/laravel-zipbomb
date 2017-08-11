@@ -7,6 +7,10 @@
 
 Enable zip bomb defense of your app
 
+## !!Experimental Code!!
+
+Not for use in production environment.
+
 ## Installation
 
 You can install the package via composer:
