@@ -97,7 +97,7 @@ This package also comes with a facade, which provides an easy way to call the th
 
 'aliases' => [
     // ...
-    'Analytics' => AdrianMejias\ZipBomb\ZipBombFacade::class,
+    'ZipBomb' => AdrianMejias\ZipBomb\ZipBombFacade::class,
 ];
 ```
 
